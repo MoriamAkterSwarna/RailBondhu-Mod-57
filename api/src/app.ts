@@ -9,8 +9,11 @@ app.use(express.json());
 app.use(cors({ origin: env.WEB_URL }));
 
 
+app.get("/", (_req, res) => {
+  res.send("Welcome to the API");
+});
 
-app.use("/api/v1", routes);
+app.use("/api", routes);
 
 
 // Not Found Handler
@@ -32,3 +35,5 @@ const errorHandler = (
     res.status(500).json({ message: "Internal Server Error" });
 }
 app.use(errorHandler);
+
+export default app;
